@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Summary and Q&A</title>
+</head>
+<body>
+    <h2>Original Text</h2>
+    <p>{{ original }}</p>
+
+    <h2>Summary ({{ length|capitalize }} Version)</h2>
+    <p>{{ summary }}</p>
+
+    <hr>
+    <h2>Ask a Question about the Above Text</h2>
+    <form method="POST">
+        <input type="text" name="question" size="80" placeholder="Ask your question here" required>
+        <input type="submit" value="Ask">
+    </form>
+
+    {% if question %}
+        <h3>Question:</h3>
+        <p><strong>{{ question }}</strong></p>
+        <h3>Answer:</h3>
+        <p>{{ answer }}</p>
+    {% endif %}
+
+    <br><a href="/">🔙 Summarize New Text</a>
+</body>
+</html>

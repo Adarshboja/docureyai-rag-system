@@ -1,0 +1,82 @@
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* PDF preview styling */
+        .pdf-preview {
+            height: 300px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            border: 2px dashed #ccc;
+        }
+        
+        /* Chat bubble styling */
+        .user-bubble {
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 18px 18px 4px 18px;
+        }
+        
+        .bot-bubble {
+            background-color: #f3f4f6;
+            color: #111827;
+            border-radius: 18px 18px 18px 4px;
+        }
+        
+        /* Smooth transitions */
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+        
+        /* Loading animation */
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        /* Tab styling */
+        .tab-active {
+            border-bottom: 3px solid #3b82f6;
+            color: #3b82f6;
+            font-weight: 600;
+        }
+/* If you use custom CSS */
+.bot-bubble {
+  background-color: #e5e7eb;
+}
+.dark .bot-bubble {
+  background-color: #374151;
+  color: #f9fafb;
+}
+.user-bubble {
+  background-color: #3b82f6;
+  color: white;
+}
+.dark .user-bubble {
+  background-color: #2563eb;
+}
+.border-gray-200 {
+    --tw-border-opacity: 1;
+    border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
+    border: beccapurple;
+}
