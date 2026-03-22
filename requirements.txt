@@ -1,8 +1,9 @@
 Flask
 google-generativeai
 google-api-python-client
-langchain
 langchain-community
 pypdf
 pymongo
 python-dotenv
+gunicorn
+requests
