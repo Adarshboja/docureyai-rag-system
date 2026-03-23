@@ -258,7 +258,17 @@
             </div>
         </div>
     </footer>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <!-- Global Loading Overlay -->
+    <div id="loading-overlay"
+        class="fixed inset-0 bg-white/70 backdrop-blur-sm flex flex-col items-center justify-center z-50 hidden">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+            <p id="loading-text" class="text-gray-800 font-semibold">Processing...</p>
+        </div>
+        <p class="text-sm text-gray-500 mt-2">This usually takes a few seconds.</p>
+    </div>
+    <script src="/static/script.js" defer></script>
 
 
 

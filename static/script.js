@@ -17,6 +17,19 @@ document.getElementById('chatbot-tab').addEventListener('click', function () {
     document.getElementById('summarizer-section').classList.add('hidden');
 });
 
+// ===== Global Loading Overlay =====
+const loadingOverlay = document.getElementById('loading-overlay');
+const loadingText = document.getElementById('loading-text');
+
+function showLoading(text = 'Processing...') {
+    if (loadingText) loadingText.textContent = text;
+    if (loadingOverlay) loadingOverlay.classList.remove('hidden');
+}
+
+function hideLoading() {
+    if (loadingOverlay) loadingOverlay.classList.add('hidden');
+}
+
 // ===== PDF Upload for Summarizer =====
 const pdfDropzone = document.getElementById('pdf-dropzone');
 const pdfUpload = document.getElementById('pdf-upload');
@@ -89,6 +102,7 @@ document.getElementById('generate-summary').addEventListener('click', function (
 
     button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
     button.disabled = true;
+    showLoading('Generating summary...');
 
     const formData = new FormData();
     formData.append('pdf', pdfUpload.files[0]);
@@ -114,6 +128,7 @@ document.getElementById('generate-summary').addEventListener('click', function (
     .finally(() => {
         button.innerHTML = '<i class="fas fa-magic mr-2"></i> Generate Summary';
         button.disabled = false;
+        hideLoading();
     });
 });
 
@@ -129,6 +144,7 @@ chatPdfUpload.addEventListener('change', function () {
 
             const formData = new FormData();
             formData.append('pdf', file);
+            showLoading('Loading PDF into assistant...');
 
             fetch('/result', {
                 method: 'POST',
@@ -141,7 +157,8 @@ chatPdfUpload.addEventListener('change', function () {
             .catch(err => {
                 console.error(err);
                 addMessage("Failed to load the document.");
-            });
+            })
+            .finally(() => hideLoading());
 
         } else {
             alert('Please upload a PDF file');
@@ -190,6 +207,7 @@ function sendMessage() {
         </div>`;
     chatMessages.appendChild(typing);
     chatMessages.scrollTop = chatMessages.scrollHeight;
+    showLoading('Thinking...');
 
     fetch('/chat', {
         method: 'POST',
@@ -199,12 +217,14 @@ function sendMessage() {
     .then(res => res.json())
     .then(data => {
         chatMessages.removeChild(typing);
-       addMessage((data.answer || "Sorry, I couldn't understand that.").replace(/\n/g, '<br>'));
-
+        addMessage((data.answer || "Sorry, I couldn't understand that.").replace(/\n/g, '<br>'));
     })
     .catch(err => {
         chatMessages.removeChild(typing);
         addMessage("Error contacting server.");
         console.error(err);
+    })
+    .finally(() => {
+        hideLoading();
     });
 }
