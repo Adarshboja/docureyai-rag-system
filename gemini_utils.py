@@ -18,7 +18,7 @@ client = Groq(api_key=groq_api_key)#inialize groq client
 
 #  Word2Vec Embedding Wrapper
 class Word2VecEmbeddings(Embeddings):
-    def _init_(self):
+    def __init__(self):
         self.model = None
 
     def train_model(self, texts):

@@ -8,7 +8,7 @@ from gemini_utils import extract_text_from_pdf, get_summary, get_chat_answer
 app = Flask(__name__)
 
 # File upload folder
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = '/tmp/uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -53,4 +53,4 @@ def chat():
         return jsonify({"answer": f"Error: {str(e)}"})
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=10000)
